@@ -3,16 +3,31 @@ import axiosInstance from "../../axios";
 import { l1task1data } from "./data/l1task1data";
 
 const LevelOne1 = () => {
-  const [answers, setAnswers] = useState(new Array(25).fill(0));
+  const [answers, setAnswers] = useState(new Array(25).fill(""));
+  const [error, setError] = useState("");
 
   function choosedAnswer(e, idx) {
     console.log(e);
     console.log(e.target.value);
     console.log(idx);
-    let chosedVal = parseInt(e.target.value);
+    let chosedVal = e.target.value;
     setAnswers((prev) =>
       prev.map((value, i) => (i == idx ? chosedVal : value))
     );
+  }
+  async function SubmitData(e) {
+    e.preventDefault();
+    const req = await axiosInstance
+      .post("/answer/submit/", { round: 1, task: 1, answer: answers })
+      .catch((err) => {
+        setError(true);
+      });
+    console.log(req);
+
+    if (req) {
+      console.log("SUBMITTED");
+      // setTimeout(navigate("/level-one"), 1000);
+    }
   }
 
   async function fetchData() {
@@ -32,7 +47,8 @@ const LevelOne1 = () => {
           <h3>Task 1</h3>
         </div>
         <div className="level-body">
-          <form>
+          <form onSubmit={SubmitData}>
+            {JSON.stringify(answers)}
             <ol className="level-data">
               {l1task1data.map((val, key) => {
                 const radioGroupName = `inlineRadioOptions${key}`; // create unique radio group name
@@ -52,8 +68,8 @@ const LevelOne1 = () => {
                         type="radio"
                         name={radioGroupName}
                         id={`${radioGroupName}1`}
-                        value={1}
-                        checked={answers[key] == 1}
+                        value={val.option1}
+                        checked={answers[key] == val.option1}
                         onChange={(e) => choosedAnswer(e, key)}
                       />
                       <label
@@ -69,8 +85,8 @@ const LevelOne1 = () => {
                         type="radio"
                         name={radioGroupName}
                         id={`${radioGroupName}2`}
-                        value={2}
-                        checked={answers[key] == 2}
+                        value={val.option2}
+                        checked={answers[key] == val.option2}
                         onChange={(e) => choosedAnswer(e, key)}
                       />
                       <label
@@ -86,8 +102,8 @@ const LevelOne1 = () => {
                         type="radio"
                         name={radioGroupName}
                         id={`${radioGroupName}3`}
-                        value={3}
-                        checked={answers[key] == 3}
+                        value={val.option3}
+                        checked={answers[key] == val.option3}
                         onChange={(e) => choosedAnswer(e, key)}
                       />
                       <label
@@ -103,8 +119,8 @@ const LevelOne1 = () => {
                         type="radio"
                         name={radioGroupName}
                         id={`${radioGroupName}4`}
-                        value={4}
-                        checked={answers[key] == 4}
+                        value={val.option4}
+                        checked={answers[key] == val.option4}
                         onChange={(e) => choosedAnswer(e, key)}
                       />
                       <label
@@ -119,7 +135,7 @@ const LevelOne1 = () => {
               })}
             </ol>
             <div className="submit">
-              <button type="button" className="btn btn-success">
+              <button type="submit" className="btn btn-success">
                 Submit
               </button>
             </div>
