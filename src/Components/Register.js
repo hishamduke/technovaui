@@ -48,7 +48,7 @@ const Register = () => {
             <div className="col-12 col-lg-6 header-right-side b-flex justify-content-between align-items-center">
               <form className="fstyle" onSubmit={SubmitData}>
                 <h2 style={{ color: "black" }}> Register</h2>
-                {JSON.stringify(process.env)}
+                {/* {JSON.stringify(process.env)} */}
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="name" class="form-label">

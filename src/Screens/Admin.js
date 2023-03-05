@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axios";
 import "../index.css";
 const Admin = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState();
   const navigate = useNavigate();
   async function fetchData() {
     const a = await axiosInstance.get("/admin/getallusers");
@@ -21,7 +21,7 @@ const Admin = () => {
     }
     fetchData();
   }, []);
-  if (!users.length) {
+  if (!users) {
     return (
       <div
         className="dashboard"
