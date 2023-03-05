@@ -101,6 +101,7 @@ const ViewUser = () => {
             <p>{user?.round1?.task1?.answer}</p>
             <p>Time</p>
             <p>{user?.round1?.task1?.time}</p>
+            <hr />
           </div>
           <h3>task2</h3>
           <div>
@@ -108,6 +109,7 @@ const ViewUser = () => {
             <p>{user?.round1?.task2?.answer}</p>
             <p>Time</p>
             <p>{user?.round1?.task2?.time}</p>
+            <hr />
           </div>
           <h3>task3</h3>
           <div>
@@ -115,6 +117,7 @@ const ViewUser = () => {
             <p>{user?.round1?.task3?.answer}</p>
             <p>Time</p>
             <p>{user?.round1?.task3?.time}</p>
+            <hr />
           </div>
           <h3>task4</h3>
           <div>
@@ -122,6 +125,7 @@ const ViewUser = () => {
             <p>{user?.round1?.task4?.answer}</p>
             <p>Time</p>
             <p>{user?.round1?.task4?.time}</p>
+            <hr />
           </div>
           <h3>task5</h3>
           <div>
@@ -129,6 +133,7 @@ const ViewUser = () => {
             <p>{user?.round1?.task5?.answer}</p>
             <p>Time</p>
             <p>{user?.round1?.task5?.time}</p>
+            <hr />
           </div>
         </div>
         <div
@@ -145,6 +150,7 @@ const ViewUser = () => {
             <p>{user?.round2?.task1?.answer}</p>
             <p>Time</p>
             <p>{user?.round2?.task1?.time}</p>
+            <hr />
           </div>
           <h4>task2</h4>
           <div>
@@ -152,6 +158,7 @@ const ViewUser = () => {
             <p>{user?.round2?.task2?.answer}</p>
             <p>Time</p>
             <p>{user?.round2?.task2?.time}</p>
+            <hr />
           </div>
           <h4>task3</h4>
           <div>
@@ -159,6 +166,7 @@ const ViewUser = () => {
             <p>{user?.round2?.task3?.answer}</p>
             <p>Time</p>
             <p>{user?.round2?.task3?.time}</p>
+            <hr />
           </div>
           <h4>task4</h4>
           <div>
@@ -166,6 +174,7 @@ const ViewUser = () => {
             <p>{user?.round2?.task4?.answer}</p>
             <p>Time</p>
             <p>{user?.round2?.task4?.time}</p>
+            <hr />
           </div>
         </div>
         <div
@@ -182,6 +191,7 @@ const ViewUser = () => {
             <p>{user?.round3?.task1?.answer}</p>
             <p>Time</p>
             <p>{user?.round3?.task1?.time}</p>
+            <hr />
           </div>
           <h4>task2</h4>
           <div>
@@ -189,6 +199,7 @@ const ViewUser = () => {
             <p>{user?.round3?.task2?.answer}</p>
             <p>Time</p>
             <p>{user?.round3?.task2?.time}</p>
+            <hr />
           </div>
           <h4>task3</h4>
           <div>
@@ -196,6 +207,7 @@ const ViewUser = () => {
             <p>{user?.round3?.task3?.answer}</p>
             <p>Time</p>
             <p>{user?.round3?.task3?.time}</p>
+            <hr />
           </div>
         </div>
 
@@ -241,6 +253,7 @@ const ViewUser = () => {
             <p>{user?.round4?.task1?.answer}</p>
             <p>Time</p>
             <p>{user?.round4?.task1?.time}</p>
+            <hr />
           </div>
           <h4>task2</h4>
           <div>
@@ -248,6 +261,7 @@ const ViewUser = () => {
             <p>{user?.round4?.task2?.answer}</p>
             <p>Time</p>
             <p>{user?.round4?.task2?.time}</p>
+            <hr />
           </div>
         </div>
         <div
@@ -264,6 +278,7 @@ const ViewUser = () => {
             <p>{user?.round5?.task1?.answer}</p>
             <p>Time</p>
             <p>{user?.round5?.task1?.time}</p>
+            <hr />
           </div>
         </div>
       </div>
