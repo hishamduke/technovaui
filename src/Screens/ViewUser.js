@@ -23,6 +23,13 @@ const ViewUser = () => {
     }
     // console.log(ok);
   }
+  async function deleteuser(val) {
+    console.log(val);
+    const ok = await axiosInstance.get(`/admin/delete/${val}`);
+    if (ok.status == 200) {
+      navigate("/admin");
+    }
+  }
 
   useEffect(() => {
     if (!localStorage.getItem("ADMIN")) {
@@ -280,6 +287,20 @@ const ViewUser = () => {
             <p>{user?.round5?.task1?.time}</p>
             <hr />
           </div>
+        </div>
+        <div style={{ display: "flex", gap: "2rem", justifyContent: "center" }}>
+          <button
+            style={{
+              border: "none",
+              color: "white",
+              padding: "1rem",
+              borderRadius: "5px",
+              backgroundColor: "#00000070",
+            }}
+            onClick={() => deleteuser(user?.id)}
+          >
+            Delete User
+          </button>
         </div>
       </div>
     </div>
