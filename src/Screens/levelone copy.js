@@ -5,10 +5,10 @@ const Auth = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("auth")) {
-      console.log("HAS");
       if (localStorage.getItem("ADMIN")) navigate("/admin");
       else navigate("/level-one");
     } else {
+      localStorage.clear();
       navigate("/login");
       console.log("DOESNT HAVE");
     }

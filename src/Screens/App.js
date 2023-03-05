@@ -46,7 +46,8 @@ import ViewUser from "./ViewUser";
 //   );
 // };
 
-const App = () => {
+
+
   return (
     <div className="Home">
       <Routes>
