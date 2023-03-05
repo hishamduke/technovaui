@@ -49,7 +49,6 @@ const LevelOne1 = ({ setSelectedComponent }) => {
         </div>
         <div className="level-body">
           <form onSubmit={SubmitData}>
-            {JSON.stringify(answers)}
             <ol className="level-data">
               {l1task1data.map((val, key) => {
                 const radioGroupName = `inlineRadioOptions${key}`; // create unique radio group name
