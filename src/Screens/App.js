@@ -59,14 +59,7 @@ const App = () => {
             </>
           }
         />
-        <Route
-          path="/register"
-          element={
-            <>
-              <Register />
-            </>
-          }
-        />
+        {/* <Route path="/register" element=<Register /> /> */}
 
         <Route path="/stage-one" element={<StageOne />} />
         <Route path="/completed" element={<Completed />} />

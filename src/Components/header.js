@@ -99,13 +99,13 @@ const Header = () => {
                   <button type="submit" class="btn btn-primary">
                     Log In
                   </button>{" "}
-                  <button
+                  {/* <button
                     type="submit"
                     class="btn btn-primary"
                     onClick={() => navigate("/register")}
                   >
                     Register
-                  </button>
+                  </button> */}
                 </div>
                 <div
                   style={{
