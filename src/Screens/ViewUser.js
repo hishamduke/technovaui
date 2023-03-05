@@ -74,16 +74,19 @@ const ViewUser = () => {
           padding: "3rem",
         }}
       >
-        <a
-          style={{ cursor: "pointer", color: "blue" }}
-          onClick={() => navigate("/admin")}
-        >
-          Go back
-        </a>
-        <p>Users</p>
-        <div>{JSON.stringify(userId)}ViewUser</div>
-        <div>name {JSON.stringify(user?.name)}</div>
-        <div>username {JSON.stringify(user?.username)}</div>
+        <div style={{ textAlign: "center" }}>
+          <a
+            style={{ cursor: "pointer", color: "blue", textAlign: "center" }}
+            onClick={() => navigate("/admin")}
+          >
+            {"<"} Go back
+          </a>
+          <h1 style={{ textAlign: "center" }}> User</h1>
+          {/* <div>{JSON.stringify(userId)}ViewUser</div> */}
+
+          <div>name : {user?.name}</div>
+          <div>username : {user?.username}</div>
+        </div>
         <div
           style={{
             backgroundColor: "#00000050",
