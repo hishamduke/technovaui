@@ -13,6 +13,7 @@ const Header = () => {
     return;
   }
   async function SubmitData(e) {
+    localStorage.clear();
     e.preventDefault();
     const a = await axiosInstance.post("/auth/login", data).catch((err) => {
       localStorage.clear();
@@ -25,6 +26,13 @@ const Header = () => {
       localStorage.setItem("auth", a.data.data.token);
       localStorage.setItem("name", a.data.data.user.name);
       localStorage.setItem("username", a.data.data.user.username);
+      console.log("a.data?.data?.user");
+      console.log(a.data?.data?.user?.isAdmin);
+      if (a.data?.data?.user?.isAdmin) {
+        navigate("/admin");
+        localStorage.setItem("ADMIN", true);
+        return;
+      }
       setTimeout(navigate("/level-one"), 1000);
     }
   }
