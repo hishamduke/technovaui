@@ -10,6 +10,8 @@ const LevelFive = () => {
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
   const nav = useNavigate();
+  const navigate = useNavigate();
+
   const [loaded, setLoaded] = useState(false);
   async function fetchData() {
     const a = await axiosInstance.get("/check/isSelected");
@@ -97,6 +99,18 @@ const LevelFive = () => {
                     <i className="fa-regular fa-pen-to-square"></i>
                   </div>{" "}
                   <div id="title">Round 5</div>
+                </li>
+                <li
+                  className="row"
+                  onClick={() => {
+                    localStorage.clear();
+                    navigate("/login");
+                  }}
+                >
+                  <div id="icon">
+                    {/* <i className="fa-regular fa-pen-to-square"></i> */}
+                  </div>
+                  <div id="title">Logout</div>
                 </li>
               </ul>
             </div>

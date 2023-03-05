@@ -4,11 +4,13 @@ import LevelTwo1 from "../Components/leveltwo/leveltwo1";
 import LevelTwo2 from "../Components/leveltwo/leveltwo2";
 import LevelTwo3 from "../Components/leveltwo/leveltwo3";
 import LevelTwo4 from "../Components/leveltwo/leveltwo4";
+import { useNavigate } from "react-router-dom";
 const LevelTwo = () => {
   const [selectedComponent, setSelectedComponent] = useState("LevelTwo1");
   const [timer, setTimer] = useState(60 * 25);
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
+  const navigate = useNavigate();
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
@@ -93,6 +95,18 @@ const LevelTwo = () => {
                     <i className="fa-regular fa-pen-to-square"></i>
                   </div>{" "}
                   <div id="title">Level 4</div>
+                </li>
+                <li
+                  className="row"
+                  onClick={() => {
+                    localStorage.clear();
+                    navigate("/login");
+                  }}
+                >
+                  <div id="icon">
+                    {/* <i className="fa-regular fa-pen-to-square"></i> */}
+                  </div>
+                  <div id="title">Logout</div>
                 </li>
               </ul>
             </div>

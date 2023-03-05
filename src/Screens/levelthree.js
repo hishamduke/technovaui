@@ -3,11 +3,13 @@ import LevelThree2 from "../Components/levelthree/levelthree2";
 import LevelThree3 from "../Components/levelthree/levelthree3";
 import TimeOutPage from "./TimeOutPage";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const LevelThree = () => {
   const [selectedComponent, setSelectedComponent] = useState("LevelThree1");
   const [timer, setTimer] = useState(60 * 50);
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
+  const navigate = useNavigate();
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
@@ -81,6 +83,18 @@ const LevelThree = () => {
                     <i className="fa-regular fa-pen-to-square"></i>
                   </div>{" "}
                   <div id="title">Level 3</div>
+                </li>
+                <li
+                  className="row"
+                  onClick={() => {
+                    localStorage.clear();
+                    navigate("/login");
+                  }}
+                >
+                  <div id="icon">
+                    {/* <i className="fa-regular fa-pen-to-square"></i> */}
+                  </div>
+                  <div id="title">Logout</div>
                 </li>
               </ul>
             </div>
