@@ -6,7 +6,8 @@ const Auth = () => {
   useEffect(() => {
     if (localStorage.getItem("auth")) {
       console.log("HAS");
-      navigate("/level-one");
+      if (localStorage.getItem("ADMIN")) navigate("/admin");
+      else navigate("/level-one");
     } else {
       navigate("/login");
       console.log("DOESNT HAVE");
