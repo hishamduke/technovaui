@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../axios";
 import { l1task1data } from "./data/l1task1data";
 
-const LevelOne1 = () => {
+const LevelOne1 = ({ setSelectedComponent }) => {
   const [answers, setAnswers] = useState(new Array(25).fill(""));
   const [error, setError] = useState("");
 
@@ -26,6 +26,7 @@ const LevelOne1 = () => {
 
     if (req) {
       console.log("SUBMITTED");
+      setSelectedComponent("LevelOne2");
       // setTimeout(navigate("/level-one"), 1000);
     }
   }

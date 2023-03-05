@@ -1,12 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axios";
 import { l1task5data } from "./data/l1task5data";
-const LevelOne5 = () => {
-  const [answers, setAnswers] = useState(new Array(6).fill(""));
+const LevelOne5 = ({ setSelectedComponent }) => {
+  const [answer, setAnswer] = useState(new Array(6).fill(""));
+  const nav = useNavigate();
   function changeData(e, idx) {
-    setAnswers((prev) =>
+    setAnswer((prev) =>
       prev.map((value, i) => (i == idx ? e.target.value : value))
     );
   }
+
+  async function SubmitData(e) {
+    e.preventDefault();
+    console.log("HERE");
+    const req = await axiosInstance
+      .post("/answer/submit/", { round: 1, task: 5, answer })
+      .catch((err) => {
+        alert("Some error occured");
+      });
+    console.log(req);
+
+    if (req) {
+      nav("/level-two");
+      console.log("SUBMITTED");
+    }
+  }
+
+  async function fetchData() {
+    const a = await axiosInstance.get("/check");
+    console.log(a);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <>
       <div className="level">
@@ -154,7 +182,7 @@ const LevelOne5 = () => {
                         className="form-control"
                         id="formGroupExampleInput"
                         placeholder="paragraph 1"
-                        value={answers[0]}
+                        value={answer[0]}
                         onChange={(e) => changeData(e, 0)}
                       />
                     </div>
@@ -164,7 +192,7 @@ const LevelOne5 = () => {
                         className="form-control"
                         id="formGroupExampleInput"
                         placeholder="paragraph 2"
-                        value={answers[1]}
+                        value={answer[1]}
                         onChange={(e) => changeData(e, 1)}
                       />
                     </div>
@@ -174,7 +202,7 @@ const LevelOne5 = () => {
                         className="form-control"
                         id="formGroupExampleInput"
                         placeholder="paragraph 3"
-                        value={answers[2]}
+                        value={answer[2]}
                         onChange={(e) => changeData(e, 2)}
                       />
                     </div>
@@ -184,7 +212,7 @@ const LevelOne5 = () => {
                         className="form-control"
                         id="formGroupExampleInput"
                         placeholder="paragraph 4"
-                        value={answers[3]}
+                        value={answer[3]}
                         onChange={(e) => changeData(e, 3)}
                       />
                     </div>
@@ -194,7 +222,7 @@ const LevelOne5 = () => {
                         className="form-control"
                         id="formGroupExampleInput"
                         placeholder="paragraph 5"
-                        value={answers[4]}
+                        value={answer[4]}
                         onChange={(e) => changeData(e, 4)}
                       />
                     </div>
@@ -204,18 +232,28 @@ const LevelOne5 = () => {
                         className="form-control"
                         id="formGroupExampleInput"
                         placeholder="paragraph 6"
-                        value={answers[5]}
+                        value={answer[5]}
                         onChange={(e) => changeData(e, 5)}
                       />
                     </div>
                   </li>
                 );
               })}
-              {JSON.stringify(answers)}
             </ul>
             <div className="submit">
-              <button type="button" className="btn btn-success">
-                Submit
+              {/* <button
+                onClick={SubmitData}
+                type="submit"
+                className="btn btn-success"
+              >
+                Save
+              </button> */}
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={SubmitData}
+              >
+                Go to next round
               </button>
             </div>
           </form>

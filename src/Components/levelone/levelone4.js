@@ -1,11 +1,38 @@
 import { l1task4data } from "./data/l1task4data";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../axios";
 
-const LevelOne4 = () => {
-  const [answer, setAnswer] = useState("");
+const LevelOne4 = ({ setSelectedComponent }) => {
+  const [answer, setAnswer] = useState(`1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.`);
   function changeData(e) {
     setAnswer(e.target.value);
   }
+
+  async function SubmitData(e) {
+    e.preventDefault();
+    const req = await axiosInstance
+      .post("/answer/submit/", { round: 1, task: 4, answer })
+      .catch((err) => {
+        alert("Some error occured");
+      });
+    console.log(req);
+
+    if (req) {
+      console.log("SUBMITTED");
+      setSelectedComponent("LevelOne5");
+      // setTimeout(navigate("/level-one"), 1000);
+    }
+  }
+
+  async function fetchData() {
+    const a = await axiosInstance.get("/check");
+    console.log(a);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="level">
@@ -14,7 +41,7 @@ const LevelOne4 = () => {
           <h3>Task 4</h3>
         </div>
         <div className="level-body">
-          <form>
+          <form onSubmit={SubmitData}>
             <ol className="level-data">
               {l1task4data.map((val, key) => {
                 return (
@@ -37,7 +64,7 @@ const LevelOne4 = () => {
                       <textarea
                         className="form-control"
                         id="formGroupExampleInput"
-                        rows="4"
+                        rows="6"
                         value={answer}
                         onChange={changeData}
                       ></textarea>
@@ -47,7 +74,7 @@ const LevelOne4 = () => {
               })}
             </ol>
             <div className="submit">
-              <button type="button" className="btn btn-success">
+              <button type="submit" className="btn btn-success">
                 Submit
               </button>
             </div>

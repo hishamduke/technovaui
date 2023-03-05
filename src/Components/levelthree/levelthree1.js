@@ -1,8 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axios";
+
 import { l3task1data } from "./data/l3task1data";
 
-const LevelThree1 = () => {
+const LevelThree1 = ({ setSelectedComponent }) => {
   const [answer, setAnswer] = useState("");
+
+  async function SubmitData(e) {
+    e.preventDefault();
+    const req = await axiosInstance
+      .post("/answer/submit/", { round: 3, task: 1, answer })
+      .catch((err) => {
+        alert("some error occured");
+      });
+    console.log(req);
+
+    if (req) {
+      console.log("SUBMITTED");
+      setSelectedComponent("LevelThree2");
+      // setTimeout(navigate("/level-one"), 1000);
+    }
+  }
+
+  async function fetchData() {
+    const a = await axiosInstance.get("/check");
+    console.log(a);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="level">
@@ -40,7 +69,11 @@ const LevelThree1 = () => {
               })}
             </ul>
             <div className="submit">
-              <button type="button" className="btn btn-success">
+              <button
+                type="button"
+                onClick={SubmitData}
+                className="btn btn-success"
+              >
                 Submit
               </button>
             </div>

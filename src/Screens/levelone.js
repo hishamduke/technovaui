@@ -22,15 +22,15 @@ const LevelOne = () => {
   const renderComponent = () => {
     switch (selectedComponent) {
       case "LevelOne1":
-        return <LevelOne1 />;
+        return <LevelOne1 setSelectedComponent={setSelectedComponent} />;
       case "LevelOne2":
-        return <LevelOne2 />;
+        return <LevelOne2 setSelectedComponent={setSelectedComponent} />;
       case "LevelOne3":
-        return <LevelOne3 />;
+        return <LevelOne3 setSelectedComponent={setSelectedComponent} />;
       case "LevelOne4":
-        return <LevelOne4 />;
+        return <LevelOne4 setSelectedComponent={setSelectedComponent} />;
       case "LevelOne5":
-        return <LevelOne5 />;
+        return <LevelOne5 setSelectedComponent={setSelectedComponent} />;
       default:
         return null;
     }

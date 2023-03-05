@@ -1,46 +1,28 @@
-import { l2task2data } from "./data/l2task2data";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../axios";
+import React, { useState } from "react";
+import { l5task1data } from "./data/l5task1data";
 
-const LevelTwo2 = ({ setSelectedComponent }) => {
+const LevelFive1 = ({ setSelectedComponent }) => {
   const [answer, setAnswer] = useState("");
 
-  async function SubmitData(e) {
-    e.preventDefault();
-    const req = await axiosInstance
-      .post("/answer/submit/", { round: 2, task: 2, answer })
-      .catch((err) => {
-        alert("some error occured");
-      });
-    console.log(req);
-
-    if (req) {
-      console.log("SUBMITTED");
-      setSelectedComponent("LevelTwo3");
-      // setTimeout(navigate("/level-one"), 1000);
+  const smallAns = "solvethisriddleandtheprizeisyours";
+  const answerIsCorrect = answer.toLowerCase() == smallAns;
+  function GoNext() {
+    if (!answerIsCorrect) return;
+    else {
+      setSelectedComponent("LevelFive2");
     }
   }
-
-  async function fetchData() {
-    const a = await axiosInstance.get("/check");
-    console.log(a);
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
   return (
     <>
       <div className="level">
         <div className="level-head">
-          <h1>Round Two</h1>
-          <h3>Task 2</h3>
+          <h1>Round Five</h1>
+          <h3>Decrypt the Code</h3>
         </div>
         <div className="level-body">
           <form>
             <ul className="level-data">
-              {l2task2data.map((val, key) => {
+              {l5task1data.map((val, key) => {
                 return (
                   <li key={key} className="level-val">
                     <div className="level-qstn">
@@ -51,15 +33,24 @@ const LevelTwo2 = ({ setSelectedComponent }) => {
                         {val.qstn}
                       </label>
                     </div>
-                    <div className="level-image">
-                      <img src={val.image} height="200" width="400" />
+                    <div className="level-qstn">
+                      <label
+                        className="form-check-label"
+                        for="formGroupExampleInput"
+                      >
+                        {val.hint}
+                      </label>
                     </div>
-                    <div className="form-outline mb-4">
+                    Hint:
+                    <div className="level-image">
+                      <img src={val.image} height="300" width="500" />
+                    </div>
+                    <div>
                       <input
                         type="text"
                         className="form-control"
                         id="formGroupExampleInput"
-                        rows="4"
+                        rows="6"
                         value={answer}
                         onChange={(e) => setAnswer(e.target.value)}
                       />
@@ -71,7 +62,7 @@ const LevelTwo2 = ({ setSelectedComponent }) => {
             <div className="submit">
               <button
                 type="button"
-                onClick={SubmitData}
+                onClick={GoNext}
                 className="btn btn-success"
               >
                 Submit
@@ -84,4 +75,4 @@ const LevelTwo2 = ({ setSelectedComponent }) => {
   );
 };
 
-export default LevelTwo2;
+export default LevelFive1;

@@ -33,6 +33,10 @@ const Header = () => {
         localStorage.setItem("ADMIN", true);
         return;
       }
+      if (a?.data?.data?.user?.selected) {
+        setTimeout(navigate("/level-four"), 1000);
+        return;
+      }
       setTimeout(navigate("/level-one"), 1000);
     }
   }

@@ -1,13 +1,25 @@
-import LevelThree1 from "../Components/levelthree/levelthree1";
-import LevelThree2 from "../Components/levelthree/levelthree2";
-import LevelThree3 from "../Components/levelthree/levelthree3";
+import LevelFive1 from "../Components/levelfive/levelfive1";
+import LevelFive2 from "../Components/levelfive/levelfive2";
 import TimeOutPage from "./TimeOutPage";
 import React, { useEffect, useState } from "react";
-const LevelThree = () => {
-  const [selectedComponent, setSelectedComponent] = useState("LevelThree1");
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axios";
+const LevelFive = () => {
+  const [selectedComponent, setSelectedComponent] = useState("LevelFive1");
   const [timer, setTimer] = useState(60 * 50);
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
+  const nav = useNavigate();
+  const [loaded, setLoaded] = useState(false);
+  async function fetchData() {
+    const a = await axiosInstance.get("/check/isSelected");
+    console.log(a);
+    setLoaded(true);
+    if (a.status == 200) return;
+    localStorage.clear();
+    nav("/login");
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
@@ -16,17 +28,16 @@ const LevelThree = () => {
   }, []);
   const renderComponent = () => {
     switch (selectedComponent) {
-      case "LevelThree1":
-        return <LevelThree1 setSelectedComponent={setSelectedComponent} />;
-      case "LevelThree2":
-        return <LevelThree2 setSelectedComponent={setSelectedComponent} />;
-      case "LevelThree3":
-        return <LevelThree3 setSelectedComponent={setSelectedComponent} />;
+      case "LevelFive1":
+        return <LevelFive1 setSelectedComponent={setSelectedComponent} />;
+      case "LevelFive2":
+        return <LevelFive2 />;
       default:
         return null;
     }
   };
   useEffect(() => {
+    fetchData();
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
@@ -37,6 +48,32 @@ const LevelThree = () => {
     event.preventDefault();
     event.returnValue = ""; // This is required to trigger the confirmation dialog
   };
+  if (!loaded)
+    return (
+      <div
+        className="dashboard"
+        style={{
+          fontSize: "1.5rem",
+          // backgroundColor: "white",
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+          // height: "100vh",
+          marginTop: "auto",
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "#00000050",
+            padding: "3rem",
+            borderRadius: "5px",
+          }}
+        >
+          <p>Loading please wait</p>
+        </div>
+      </div>
+    );
   return (
     <div className="dashboard">
       {timer <= 0 ? (
@@ -55,32 +92,11 @@ const LevelThree = () => {
                   </div>
                 </li>
                 <hr />
-                <li
-                  className="row"
-                  onClick={() => setSelectedComponent("LevelThree1")}
-                >
+                <li className="row">
                   <div id="icon">
                     <i className="fa-regular fa-pen-to-square"></i>
                   </div>{" "}
-                  <div id="title">Level 1</div>
-                </li>
-                <li
-                  className="row"
-                  onClick={() => setSelectedComponent("LevelThree2")}
-                >
-                  <div id="icon">
-                    <i className="fa-regular fa-pen-to-square"></i>
-                  </div>{" "}
-                  <div id="title">Level 2</div>
-                </li>
-                <li
-                  className="row"
-                  onClick={() => setSelectedComponent("LevelThree3")}
-                >
-                  <div id="icon">
-                    <i className="fa-regular fa-pen-to-square"></i>
-                  </div>{" "}
-                  <div id="title">Level 3</div>
+                  <div id="title">Round 5</div>
                 </li>
               </ul>
             </div>
@@ -92,23 +108,4 @@ const LevelThree = () => {
   );
 };
 
-export default LevelThree;
-
-// USER
-//  uname
-//  pwd
-// selected
-
-//  Level1 Answers
-
-//  dwa
-//  adwdwa
-//  dawwda
-
-//  Level2 ,2
-
-//level 4,5
-//only selected
-
-// ADMIN
-// show finalists
+export default LevelFive;

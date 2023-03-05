@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../axios";
-import { l4task1data } from "./data/l4task1data";
-const LevelFour1 = ({ setSelectedComponent }) => {
-  const [answer, setAnswer] = useState("");
+
+import { l5task2data } from "./data/l5task2data";
+
+const LevelFive2 = () => {
+  const [answer, setAnswer] = useState(["", "", ""]);
   const [loaded, setLoaded] = useState(false);
 
   const nav = useNavigate();
+
   async function fetchData() {
     const a = await axiosInstance.get("/check/isSelected");
     console.log(a);
@@ -19,7 +22,7 @@ const LevelFour1 = ({ setSelectedComponent }) => {
   async function SubmitData(e) {
     e.preventDefault();
     const req = await axiosInstance
-      .post("/answer/submit/", { round: 4, task: 1, answer })
+      .post("/answer/submit/", { round: 5, task: 1, answer })
       .catch((err) => {
         alert("some error occured");
       });
@@ -27,9 +30,16 @@ const LevelFour1 = ({ setSelectedComponent }) => {
 
     if (req) {
       console.log("SUBMITTED");
-      setSelectedComponent("LevelFour2");
+      nav("/completed");
+      // setSelectedComponent("LevelFour2");
       // setTimeout(navigate("/level-one"), 1000);
     }
+  }
+
+  function changeData(e, i) {
+    setAnswer((prev) =>
+      prev.map((prev, idx) => (idx == i ? e.target.value : prev))
+    );
   }
 
   useEffect(() => {
@@ -37,18 +47,17 @@ const LevelFour1 = ({ setSelectedComponent }) => {
   }, []);
 
   if (!loaded) return;
-
   return (
     <>
       <div className="level">
         <div className="level-head">
-          <h1>Round Four</h1>
-          <h3>Pattern Code</h3>
+          <h1>Round Five</h1>
+          <h3>Riddle</h3>
         </div>
         <div className="level-body">
           <form>
             <ul className="level-data">
-              {l4task1data.map((val, key) => {
+              {l5task2data.map((val, key) => {
                 return (
                   <li key={key} className="level-val">
                     <div className="level-qstn">
@@ -59,17 +68,41 @@ const LevelFour1 = ({ setSelectedComponent }) => {
                         {val.qstn}
                       </label>
                     </div>
-                    <div className="level-image">
-                      <img src={val.image} height="400" width="500" />
-                    </div>
+                    <br />
+
                     <div>
-                      {/* <input type="file" className="form-control upload" id="formGroupExampleInput" rows="4"/> */}
-                      <textarea
+                      <input
+                        type="text"
                         className="form-control"
+                        placeholder="1st Question"
                         id="formGroupExampleInput"
                         rows="4"
-                        value={answer}
-                        onChange={(e) => setAnswer(e.target.value)}
+                        value={answer[0]}
+                        onChange={(e) => changeData(e, 0)}
+                      />
+                    </div>
+                    <br />
+                    <div>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="2nd Question"
+                        id="formGroupExampleInput"
+                        rows="4"
+                        value={answer[1]}
+                        onChange={(e) => changeData(e, 1)}
+                      />
+                    </div>
+                    <br />
+                    <div>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="3rd Question"
+                        id="formGroupExampleInput"
+                        rows="4"
+                        onChange={(e) => changeData(e, 2)}
+                        value={answer[2]}
                       />
                     </div>
                   </li>
@@ -92,4 +125,4 @@ const LevelFour1 = ({ setSelectedComponent }) => {
   );
 };
 
-export default LevelFour1;
+export default LevelFive2;

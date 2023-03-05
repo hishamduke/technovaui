@@ -1,8 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axios";
+
 import { l3task3data } from "./data/l3task3data";
 
 const LevelThree3 = () => {
   const [answer, setAnswer] = useState("");
+
+  const nav = useNavigate();
+  async function SubmitData(e) {
+    e.preventDefault();
+    const req = await axiosInstance
+      .post("/answer/submit/", { round: 3, task: 3, answer })
+      .catch((err) => {
+        alert("some error occured");
+      });
+    console.log(req);
+
+    if (req) {
+      console.log("SUBMITTED");
+      nav("/stage-one");
+      //REPLACE THIS WITH SOME TEXT
+      // setTimeout(navigate("/level-one"), 1000);
+    }
+  }
+
+  async function fetchData() {
+    const a = await axiosInstance.get("/check");
+    console.log(a);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="level">
@@ -33,7 +64,7 @@ const LevelThree3 = () => {
                       <textarea
                         className="form-control"
                         id="formGroupExampleInput"
-                        rows="4"
+                        rows="7"
                         value={answer}
                         onChange={(e) => setAnswer(e.target.value)}
                       />
@@ -43,7 +74,11 @@ const LevelThree3 = () => {
               })}
             </ul>
             <div className="submit">
-              <button type="button" className="btn btn-success">
+              <button
+                type="button"
+                onClick={SubmitData}
+                className="btn btn-success"
+              >
                 Submit
               </button>
             </div>

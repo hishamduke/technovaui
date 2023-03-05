@@ -1,8 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axios";
+
 import { l2task4data } from "./data/l2task4data";
 
-const LevelTwo4 = () => {
+const LevelTwo4 = ({ setSelectedComponent }) => {
   const [answer, setAnswer] = useState("");
+  const nav = useNavigate();
+
+  async function SubmitData(e) {
+    e.preventDefault();
+    const req = await axiosInstance
+      .post("/answer/submit/", { round: 2, task: 4, answer })
+      .catch((err) => {
+        alert("some error occured");
+      });
+    console.log(req);
+
+    if (req) {
+      console.log("SUBMITTED");
+      nav("/level-three");
+      // setTimeout(navigate("/level-one"), 1000);
+    }
+  }
+
+  async function fetchData() {
+    const a = await axiosInstance.get("/check");
+    console.log(a);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <>
       <div className="level">
@@ -42,8 +71,12 @@ const LevelTwo4 = () => {
               })}
             </ul>
             <div className="submit">
-              <button type="button" className="btn btn-success">
-                Submit
+              <button
+                type="button"
+                onClick={SubmitData}
+                className="btn btn-success"
+              >
+                Next Round
               </button>
             </div>
           </form>
