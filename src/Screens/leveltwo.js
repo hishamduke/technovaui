@@ -7,7 +7,7 @@ import LevelTwo4 from "../Components/leveltwo/leveltwo4";
 import { useNavigate } from "react-router-dom";
 const LevelTwo = () => {
   const [selectedComponent, setSelectedComponent] = useState("LevelTwo1");
-  const [timer, setTimer] = useState(60 * 25);
+  const [timer, setTimer] = useState(60 );
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
   const navigate = useNavigate();

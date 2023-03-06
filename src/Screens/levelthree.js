@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const LevelThree = () => {
   const [selectedComponent, setSelectedComponent] = useState("LevelThree1");
-  const [timer, setTimer] = useState(60 * 50);
+  const [timer, setTimer] = useState(60 );
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
   const navigate = useNavigate();
