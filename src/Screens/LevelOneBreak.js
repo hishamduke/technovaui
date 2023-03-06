@@ -30,7 +30,7 @@ const StageOne = () => {
         }}
       >
         
-        <button onClick={() => nav("/login")} class="btn btn-primary">
+        <button onClick={() => nav("/level-two")} class="btn btn-primary">
           Next Round
         </button>
       </div>
