@@ -4,9 +4,7 @@ import axiosInstance from "../axios";
 import "../index.css";
 const StageOne = () => {
   const nav = useNavigate();
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
+ 
 
   return (
     <div
