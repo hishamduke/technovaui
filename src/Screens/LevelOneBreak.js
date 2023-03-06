@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axios";
 import "../index.css";
-const StageOne = () => {
+const LineOneBreak = () => {
   const nav = useNavigate();
  
 
@@ -28,7 +28,7 @@ const StageOne = () => {
         }}
       >
         
-        <button onClick={() => nav("/level-two")} class="btn btn-primary">
+        <button onClick={() => nav("/level-two")} class="btn btn-primary btn-lg">
           Next Round
         </button>
       </div>
@@ -36,4 +36,4 @@ const StageOne = () => {
   );
 };
 
-export default StageOne;
+export default LineOneBreak;
