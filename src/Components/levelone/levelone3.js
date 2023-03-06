@@ -42,7 +42,7 @@ const LevelOne3 = ({ setSelectedComponent }) => {
           <h3>Task 3</h3>
         </div>
         <div className="level-body">
-          {JSON.stringify(answers)}
+          
           <form>
             <ul className="level-data">
               {l1task3data.map((val, key) => {

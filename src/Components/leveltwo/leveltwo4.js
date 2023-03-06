@@ -53,8 +53,11 @@ const LevelTwo4 = ({ setSelectedComponent }) => {
                         {val.qstn}
                       </label>
                     </div>
-                    <div className="level-image">
-                      <img src={val.image} height="400" width="500" />
+                    <div className="level-audio">
+                      <audio controls>
+                        <source src={val.audio} type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
                     </div>
                     <div className="form-outline mb-4">
                       <input
