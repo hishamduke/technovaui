@@ -67,7 +67,7 @@ const LevelFour2 = ({ setSelectedComponent }) => {
                 type="button"
                 className="btn btn-success"
               >
-                Submit
+                Next Round
               </button>
             </div>
           </form>
