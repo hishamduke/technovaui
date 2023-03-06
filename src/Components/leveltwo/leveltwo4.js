@@ -55,7 +55,7 @@ const LevelTwo4 = ({ setSelectedComponent }) => {
                     </div>
                     <div className="level-audio">
                       <audio controls>
-                        <source src={val.audio} type="audio/mp" />
+                        <source src={val.audio} type="audio/mp3" />
                         Your browser does not support the audio element.
                       </audio>
                     </div>
