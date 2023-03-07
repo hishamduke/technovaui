@@ -8,7 +8,7 @@
 }
 
 :root {
-  --bgcolor: #fceffb;
+  --bgcolor: #122b69;
   --primary-color: #000000;
   --text-color: #cdc9cc;
   --main-text-color: #ffffff;
@@ -31,9 +31,13 @@ h5,
 h6 {
   color: #fff;
 }
+body {
+  background-color: #122b69;
+}
 
 .Home {
-  background: url("../public/images/img3.png");
+  background: url("../public/images/img3.webp");
+  background-color: #122b69;
   background-size: cover;
 }
 
