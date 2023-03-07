@@ -10,7 +10,6 @@ const Auth = () => {
     } else {
       localStorage.clear();
       navigate("/login");
-      console.log("DOESNT HAVE");
     }
   }, []);
 

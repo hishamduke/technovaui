@@ -15,10 +15,8 @@ const LevelThree3 = () => {
       .catch((err) => {
         alert("some error occured");
       });
-    console.log(req);
 
     if (req) {
-      console.log("SUBMITTED");
       nav("/stage-one");
       //REPLACE THIS WITH SOME TEXT
       // setTimeout(navigate("/level-one"), 1000);
@@ -27,7 +25,6 @@ const LevelThree3 = () => {
 
   async function fetchData() {
     const a = await axiosInstance.get("/check");
-    console.log(a);
   }
 
   useEffect(() => {

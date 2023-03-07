@@ -17,7 +17,6 @@ const LevelOne = () => {
 
   async function roundCheck() {
     const roundReq = await axiosInstance.get("/check/round");
-    console.log(roundReq.data?.data?.round);
     if (roundReq.data?.data?.round != 1) {
       localStorage.clear();
       navigate("/login");

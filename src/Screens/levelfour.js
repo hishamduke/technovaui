@@ -15,7 +15,6 @@ const LevelFour = () => {
 
   async function roundCheck() {
     const roundReq = await axiosInstance.get("/check/round");
-    console.log(roundReq.data?.data?.round);
     if (roundReq.data?.data?.round != 4) {
       localStorage.clear();
       navigate("/login");
@@ -27,7 +26,6 @@ const LevelFour = () => {
   }, []);
 
   useEffect(() => {
-    console.log(localStorage.getItem("selected"));
     const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
     }, 1000);

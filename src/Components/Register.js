@@ -15,9 +15,7 @@ const Register = () => {
     const a = await axiosInstance
       .post("/auth/register", data)
       .catch((err) => alert("error occured"));
-    console.log(a);
     if (a) {
-      console.log("SUCCESS");
       navigate("/login");
     }
   }

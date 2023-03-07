@@ -9,8 +9,6 @@ const ViewUser = () => {
   const { userId } = useParams();
   async function fetchData() {
     const a = await axiosInstance.get(`/admin/getuser/${userId}`);
-    console.log(a);
-    console.log(a.data.data);
     if (a.data.data) setUser(a.data.data);
   }
 
@@ -21,10 +19,8 @@ const ViewUser = () => {
     if (ok.status == 200) {
       navigate("/admin");
     }
-    // console.log(ok);
   }
   async function deleteuser(val) {
-    console.log(val);
     const ok = await axiosInstance.get(`/admin/delete/${val}`);
     if (ok.status == 200) {
       navigate("/admin");
@@ -33,7 +29,6 @@ const ViewUser = () => {
 
   useEffect(() => {
     if (!localStorage.getItem("ADMIN")) {
-      //   console.log("NOT ADMIN");
       //   localStorage.clear();
       //   navigate("/login");
       //   return;

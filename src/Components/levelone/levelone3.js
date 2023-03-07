@@ -16,10 +16,8 @@ const LevelOne3 = ({ setSelectedComponent }) => {
       .catch((err) => {
         alert("Some error occured");
       });
-    console.log(req);
 
     if (req) {
-      console.log("SUBMITTED");
       setSelectedComponent("LevelOne4");
       // setTimeout(navigate("/level-one"), 1000);
     }
@@ -27,7 +25,6 @@ const LevelOne3 = ({ setSelectedComponent }) => {
 
   async function fetchData() {
     const a = await axiosInstance.get("/check");
-    console.log(a);
   }
 
   useEffect(() => {
@@ -42,7 +39,6 @@ const LevelOne3 = ({ setSelectedComponent }) => {
           <h3>Task 3</h3>
         </div>
         <div className="level-body">
-          
           <form>
             <ul className="level-data">
               {l1task3data.map((val, key) => {

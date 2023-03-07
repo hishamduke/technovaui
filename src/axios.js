@@ -22,14 +22,10 @@ axiosInstance.interceptors.response.use(
   function (error) {
     const originalRequest = error.config;
     if (error.response.status === 401) {
-      console.log("ERROR");
       // router.push("/login");
-      console.log("ERROR AUTH");
-      console.log(localStorage.getItem("auth"));
       window.location.href = "/login";
       return Promise.reject(error);
     }
-    console.log("ERROR");
 
     return Promise.reject(error);
   }

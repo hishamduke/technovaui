@@ -12,17 +12,14 @@ const LevelOne2 = ({ setSelectedComponent }) => {
   }
 
   async function SubmitData(e) {
-    console.log("SUBMISSION");
     e.preventDefault();
     const req = await axiosInstance
       .post("/answer/submit/", { round: 1, task: 2, answer: answers })
       .catch((err) => {
         alert("Some error occured");
       });
-    console.log(req);
 
     if (req) {
-      console.log("SUBMITTED");
       setSelectedComponent("LevelOne3");
       // setTimeout(navigate("/level-one"), 1000);
     }
@@ -30,7 +27,6 @@ const LevelOne2 = ({ setSelectedComponent }) => {
 
   async function fetchData() {
     const a = await axiosInstance.get("/check");
-    console.log(a);
   }
 
   useEffect(() => {

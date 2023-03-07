@@ -18,7 +18,6 @@ const LevelFive = () => {
     const roundReq = await axiosInstance.get("/check/round");
     setLoaded(true);
 
-    console.log(roundReq.data?.data?.round);
     if (roundReq.data?.data?.round != 5) {
       localStorage.clear();
       navigate("/login");
@@ -29,7 +28,6 @@ const LevelFive = () => {
 
   async function fetchData() {
     const a = await axiosInstance.get("/check/isSelected");
-    console.log(a);
     roundCheck();
     if (a.status == 200) return;
     localStorage.clear();

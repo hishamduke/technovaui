@@ -31,9 +31,9 @@ const StageOne = () => {
       >
         <p>Stage one finished, Please wait for more updates!!</p>
         <p>Good Luck!</p>
-        {/* <button onClick={() => nav("/login")} class="btn btn-primary">
+        <button onClick={() => nav("/login")} class="btn btn-primary">
           Log In
-        </button> */}
+        </button>
       </div>
     </div>
   );

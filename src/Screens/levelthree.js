@@ -18,7 +18,6 @@ const LevelThree = () => {
     const roundReq = await axiosInstance.get("/check/round");
     setLoaded(true);
 
-    console.log(roundReq.data?.data?.round);
     if (roundReq.data?.data?.round != 3) {
       localStorage.clear();
       navigate("/login");

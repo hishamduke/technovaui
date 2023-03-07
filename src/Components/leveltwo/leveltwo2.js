@@ -13,10 +13,8 @@ const LevelTwo2 = ({ setSelectedComponent }) => {
       .catch((err) => {
         alert("some error occured");
       });
-    console.log(req);
 
     if (req) {
-      console.log("SUBMITTED");
       setSelectedComponent("LevelTwo3");
       // setTimeout(navigate("/level-one"), 1000);
     }
@@ -24,7 +22,6 @@ const LevelTwo2 = ({ setSelectedComponent }) => {
 
   async function fetchData() {
     const a = await axiosInstance.get("/check");
-    console.log(a);
   }
 
   useEffect(() => {

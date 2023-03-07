@@ -12,7 +12,6 @@ const LevelFive2 = () => {
 
   async function fetchData() {
     const a = await axiosInstance.get("/check/isSelected");
-    console.log(a);
     if (a.status != 200) {
       localStorage.clear();
       nav("/login");
@@ -26,10 +25,8 @@ const LevelFive2 = () => {
       .catch((err) => {
         alert("some error occured");
       });
-    console.log(req);
 
     if (req) {
-      console.log("SUBMITTED");
       nav("/completed");
       // setSelectedComponent("LevelFour2");
       // setTimeout(navigate("/level-one"), 1000);

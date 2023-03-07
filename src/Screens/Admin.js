@@ -9,24 +9,16 @@ const Admin = () => {
   async function fetchData() {
     const a = await axiosInstance.get("/admin/getallusers");
     const round = await axiosInstance.get("/check/round");
-    console.log("round");
-    console.log(round.data.data);
-    console.log(a);
-    console.log(a.data.data);
     if (a.data.data) setUsers(a.data.data);
     if (round.data.data) setRound(round?.data?.data?.round);
   }
 
   async function submitRound() {
-    console.log("round post");
     const roundSet = await axiosInstance.post("/check/round", { round: round });
-    console.log(roundSet);
     if (roundSet.data.data) setRound(roundSet.data.data.round);
   }
-  console.log(round);
   useEffect(() => {
     if (!localStorage.getItem("ADMIN")) {
-      //   console.log("NOT ADMIN");
       //   localStorage.clear();
       //   navigate("/login");
       //   return;

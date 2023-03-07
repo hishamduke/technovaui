@@ -13,23 +13,19 @@ const LevelOne5 = ({ setSelectedComponent }) => {
 
   async function SubmitData(e) {
     e.preventDefault();
-    console.log("HERE");
     const req = await axiosInstance
       .post("/answer/submit/", { round: 1, task: 5, answer })
       .catch((err) => {
         alert("Some error occured");
       });
-    console.log(req);
 
     if (req) {
       nav("/break");
-      console.log("SUBMITTEDa");
     }
   }
 
   async function fetchData() {
     const a = await axiosInstance.get("/check");
-    console.log(a);
   }
 
   useEffect(() => {

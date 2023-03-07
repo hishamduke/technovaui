@@ -7,9 +7,6 @@ const LevelOne1 = ({ setSelectedComponent }) => {
   const [error, setError] = useState("");
 
   function choosedAnswer(e, idx) {
-    console.log(e);
-    console.log(e.target.value);
-    console.log(idx);
     let chosedVal = e.target.value;
     setAnswers((prev) =>
       prev.map((value, i) => (i == idx ? chosedVal : value))
@@ -22,10 +19,8 @@ const LevelOne1 = ({ setSelectedComponent }) => {
       .catch((err) => {
         setError(true);
       });
-    console.log(req);
 
     if (req) {
-      console.log("SUBMITTED");
       setSelectedComponent("LevelOne2");
       // setTimeout(navigate("/level-one"), 1000);
     }
@@ -33,7 +28,6 @@ const LevelOne1 = ({ setSelectedComponent }) => {
 
   async function fetchData() {
     const a = await axiosInstance.get("/check");
-    console.log(a);
   }
 
   useEffect(() => {

@@ -16,10 +16,8 @@ const LevelFour2 = ({ setSelectedComponent }) => {
       .catch((err) => {
         alert("some error occured");
       });
-    console.log(req);
 
     if (req) {
-      console.log("SUBMITTED");
       // setSelectedComponent("LevelFour2");
       nav("/break");
       // setTimeout(navigate("/level-one"), 1000);
