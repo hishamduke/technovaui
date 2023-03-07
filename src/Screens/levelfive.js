@@ -13,10 +13,24 @@ const LevelFive = () => {
   const navigate = useNavigate();
 
   const [loaded, setLoaded] = useState(false);
+
+  async function roundCheck() {
+    const roundReq = await axiosInstance.get("/check/round");
+    setLoaded(true);
+
+    console.log(roundReq.data?.data?.round);
+    if (roundReq.data?.data?.round != 5) {
+      localStorage.clear();
+      navigate("/login");
+    }
+  }
+
+  useEffect(() => {}, []);
+
   async function fetchData() {
     const a = await axiosInstance.get("/check/isSelected");
     console.log(a);
-    setLoaded(true);
+    roundCheck();
     if (a.status == 200) return;
     localStorage.clear();
     nav("/login");

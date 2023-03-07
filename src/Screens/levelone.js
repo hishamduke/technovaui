@@ -6,13 +6,28 @@ import LevelOne3 from "../Components/levelone/levelone3";
 import LevelOne4 from "../Components/levelone/levelone4";
 import LevelOne5 from "../Components/levelone/levelone5";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axios";
 
 const LevelOne = () => {
   const [selectedComponent, setSelectedComponent] = useState("LevelOne1");
-  const [timer, setTimer] = useState(60*50 );
+  const [timer, setTimer] = useState(60 * 50);
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
   const navigate = useNavigate();
+
+  async function roundCheck() {
+    const roundReq = await axiosInstance.get("/check/round");
+    console.log(roundReq.data?.data?.round);
+    if (roundReq.data?.data?.round != 1) {
+      localStorage.clear();
+      navigate("/login");
+    }
+  }
+
+  useEffect(() => {
+    roundCheck();
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
@@ -35,6 +50,7 @@ const LevelOne = () => {
         return null;
     }
   };
+
   useEffect(() => {
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {

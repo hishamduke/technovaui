@@ -10,9 +10,21 @@ const LevelFour = () => {
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
   const nav = useNavigate();
+  const [loaded, setLoaded] = useState(false);
   const navigate = useNavigate();
 
-  const [loaded, setLoaded] = useState(false);
+  async function roundCheck() {
+    const roundReq = await axiosInstance.get("/check/round");
+    console.log(roundReq.data?.data?.round);
+    if (roundReq.data?.data?.round != 4) {
+      localStorage.clear();
+      navigate("/login");
+    }
+  }
+
+  useEffect(() => {
+    roundCheck();
+  }, []);
 
   useEffect(() => {
     console.log(localStorage.getItem("selected"));

@@ -34,7 +34,7 @@ const Header = () => {
       console.log(a.data?.data?.user?.isAdmin);
 
       const roundReq = await axiosInstance.get("/check/round");
-      console.log("roundReq.data?.data?.round");
+
       console.log(roundReq.data?.data?.round);
       if (roundReq.data) {
         setRound(roundReq.data?.data?.round);
@@ -50,13 +50,13 @@ const Header = () => {
         console.log(round);
         if (roundReq.data?.data?.round == 4) return navigate("/level-four");
         if (roundReq.data?.data?.round == 5) return navigate("/level-five");
-        return;
-      } else {
-        if (roundReq.data?.data?.round == 1) return navigate("/level-one");
-        if (roundReq.data?.data?.round == 2) return navigate("/level-two");
-        if (roundReq.data?.data?.round == 3) return navigate("/level-three");
-        // return;
       }
+
+      if (roundReq.data?.data?.round == 1) return navigate("/level-one");
+      if (roundReq.data?.data?.round == 2) return navigate("/level-two");
+      if (roundReq.data?.data?.round == 3) return navigate("/level-three");
+      // return;
+
       navigate("/login");
     }
   }

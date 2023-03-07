@@ -5,12 +5,29 @@ import LevelTwo2 from "../Components/leveltwo/leveltwo2";
 import LevelTwo3 from "../Components/leveltwo/leveltwo3";
 import LevelTwo4 from "../Components/leveltwo/leveltwo4";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axios";
 const LevelTwo = () => {
   const [selectedComponent, setSelectedComponent] = useState("LevelTwo1");
-  const [timer, setTimer] = useState(60 *50);
+  const [timer, setTimer] = useState(60 * 50);
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
   const navigate = useNavigate();
+
+  const [loaded, setLoaded] = useState(false);
+  async function roundCheck() {
+    const roundReq = await axiosInstance.get("/check/round");
+    setLoaded(true);
+    console.log(roundReq.data?.data?.round);
+    if (roundReq.data?.data?.round != 2) {
+      localStorage.clear();
+      navigate("/login");
+    }
+  }
+
+  useEffect(() => {
+    roundCheck();
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
@@ -42,80 +59,81 @@ const LevelTwo = () => {
     event.preventDefault();
     event.returnValue = ""; // This is required to trigger the confirmation dialog
   };
-  return (
-    <div className="dashboard">
-      {timer <= 0 ? (
-        <TimeOutPage />
-      ) : (
-        <div className="dashboard-row">
-          <div>
-            <div className="sidebar">
-              <ul className="sidebarlist">
-                <li className="row">
-                  <div id="icon">
-                    <i className="fa-regular fa-clock"></i>
-                  </div>{" "}
-                  <div id="title">
-                    Timer : {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                  </div>
-                </li>
-                <hr />
-                <li
-                  className="row"
-                  onClick={() => setSelectedComponent("LevelTwo1")}
-                >
-                  <div id="icon">
-                    <i className="fa-regular fa-pen-to-square"></i>
-                  </div>{" "}
-                  <div id="title">Level 1</div>
-                </li>
-                <li
-                  className="row"
-                  onClick={() => setSelectedComponent("LevelTwo2")}
-                >
-                  <div id="icon">
-                    <i className="fa-regular fa-pen-to-square"></i>
-                  </div>{" "}
-                  <div id="title">Level 2</div>
-                </li>
-                <li
-                  className="row"
-                  onClick={() => setSelectedComponent("LevelTwo3")}
-                >
-                  <div id="icon">
-                    <i className="fa-regular fa-pen-to-square"></i>
-                  </div>{" "}
-                  <div id="title">Level 3</div>
-                </li>
-                <li
-                  className="row"
-                  onClick={() => setSelectedComponent("LevelTwo4")}
-                >
-                  <div id="icon">
-                    <i className="fa-regular fa-pen-to-square"></i>
-                  </div>{" "}
-                  <div id="title">Level 4</div>
-                </li>
-                <li
-                  className="row"
-                  onClick={() => {
-                    localStorage.clear();
-                    navigate("/login");
-                  }}
-                >
-                  <div id="icon">
-                    {/* <i className="fa-regular fa-pen-to-square"></i> */}
-                  </div>
-                  <div id="title">Logout</div>
-                </li>
-              </ul>
+  if (loaded)
+    return (
+      <div className="dashboard">
+        {timer <= 0 ? (
+          <TimeOutPage />
+        ) : (
+          <div className="dashboard-row">
+            <div>
+              <div className="sidebar">
+                <ul className="sidebarlist">
+                  <li className="row">
+                    <div id="icon">
+                      <i className="fa-regular fa-clock"></i>
+                    </div>{" "}
+                    <div id="title">
+                      Timer : {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+                    </div>
+                  </li>
+                  <hr />
+                  <li
+                    className="row"
+                    onClick={() => setSelectedComponent("LevelTwo1")}
+                  >
+                    <div id="icon">
+                      <i className="fa-regular fa-pen-to-square"></i>
+                    </div>{" "}
+                    <div id="title">Level 1</div>
+                  </li>
+                  <li
+                    className="row"
+                    onClick={() => setSelectedComponent("LevelTwo2")}
+                  >
+                    <div id="icon">
+                      <i className="fa-regular fa-pen-to-square"></i>
+                    </div>{" "}
+                    <div id="title">Level 2</div>
+                  </li>
+                  <li
+                    className="row"
+                    onClick={() => setSelectedComponent("LevelTwo3")}
+                  >
+                    <div id="icon">
+                      <i className="fa-regular fa-pen-to-square"></i>
+                    </div>{" "}
+                    <div id="title">Level 3</div>
+                  </li>
+                  <li
+                    className="row"
+                    onClick={() => setSelectedComponent("LevelTwo4")}
+                  >
+                    <div id="icon">
+                      <i className="fa-regular fa-pen-to-square"></i>
+                    </div>{" "}
+                    <div id="title">Level 4</div>
+                  </li>
+                  <li
+                    className="row"
+                    onClick={() => {
+                      localStorage.clear();
+                      navigate("/login");
+                    }}
+                  >
+                    <div id="icon">
+                      {/* <i className="fa-regular fa-pen-to-square"></i> */}
+                    </div>
+                    <div id="title">Logout</div>
+                  </li>
+                </ul>
+              </div>
             </div>
+            <div>{renderComponent()}</div>
           </div>
-          <div>{renderComponent()}</div>
-        </div>
-      )}
-    </div>
-  );
+        )}
+      </div>
+    );
 };
 
 export default LevelTwo;
