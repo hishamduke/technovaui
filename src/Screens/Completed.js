@@ -23,12 +23,15 @@ const Completed = () => {
     >
       <div
         style={{
-          backgroundColor: "#FFFFFF50",
+          backgroundColor: "#ffffffbb",
           padding: "3rem",
           borderRadius: "5px",
         }}
       >
-        <p>You have completed</p>
+        <p>You have completed technova.</p>
+        <p>We will publish the result soon!</p>
+        <p>Thank you for participating!!</p>
+
         {/* <button onClick={() => nav("/login")} class="btn btn-primary">
           Log In
         </button> */}
