@@ -33,6 +33,7 @@ h6 {
 }
 
 .Home {
+  background-color: #122b69;
   background: url("../public/images/img3.webp");
   background-size: cover;
 }
