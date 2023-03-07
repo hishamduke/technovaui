@@ -21,7 +21,8 @@ import LevelThree from "./levelthree";
 import LevelTwo from "./leveltwo";
 import StageOne from "./StageOne";
 import ViewUser from "./ViewUser";
-import LevelOneBreak from './LevelOneBreak'
+import LevelOneBreak from "./LevelOneBreak";
+import LevelCompleted from "./LevelCompleted";
 
 const App = () => {
   return (
@@ -43,12 +44,12 @@ const App = () => {
         <Route path="/level-one" element={<LevelOne />} />
         <Route path="/level-two" element={<LevelTwo />} />
         <Route path="/level-three" element={<LevelThree />} />
-        
+
         <Route path="/level-four" element={<LevelFour />} />
         <Route path="/level-five" element={<LevelFive />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/:userId" element={<ViewUser />} />
-        <Route path="/level-one-break" element={<LevelOneBreak/>} />
+        <Route path="/break" element={<LevelCompleted />} />
         {/* <Route path="*" errorElement={<Navigate to={"/login"} />} /> */}
       </Routes>{" "}
     </div>

@@ -22,7 +22,7 @@ const LevelOne5 = ({ setSelectedComponent }) => {
     console.log(req);
 
     if (req) {
-      nav("/level-one-break");
+      nav("/break");
       console.log("SUBMITTEDa");
     }
   }
