@@ -15,6 +15,7 @@ const LevelFour = () => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    console.log(localStorage.getItem("selected"));
     const interval = setInterval(() => {
       setTimer((prevTimer) => prevTimer - 1);
     }, 1000);

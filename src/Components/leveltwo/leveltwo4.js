@@ -19,7 +19,7 @@ const LevelTwo4 = ({ setSelectedComponent }) => {
 
     if (req) {
       console.log("SUBMITTED");
-      nav("/level-three");
+      nav("/break");
       // setTimeout(navigate("/level-one"), 1000);
     }
   }

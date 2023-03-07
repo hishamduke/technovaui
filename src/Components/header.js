@@ -45,6 +45,7 @@ const Header = () => {
         return navigate("/admin");
       }
       if (a?.data?.data?.user?.selected) {
+        localStorage.setItem("selected", true);
         console.log("selected");
         console.log(round);
         if (roundReq.data?.data?.round == 4) return navigate("/level-four");
