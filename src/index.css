@@ -31,10 +31,13 @@ h5,
 h6 {
   color: #fff;
 }
+body {
+  background-color: #122b69;
+}
 
 .Home {
-  background-color: #122b69;
   background: url("../public/images/img3.webp");
+  background-color: #122b69;
   background-size: cover;
 }
 
