@@ -26,6 +26,10 @@ const Completed = () => {
           backgroundColor: "#ffffffbb",
           padding: "3rem",
           borderRadius: "5px",
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <p>You have completed technova.</p>
