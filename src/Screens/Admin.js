@@ -4,14 +4,26 @@ import axiosInstance from "../axios";
 import "../index.css";
 const Admin = () => {
   const [users, setUsers] = useState();
+  const [round, setRound] = useState(1);
   const navigate = useNavigate();
   async function fetchData() {
     const a = await axiosInstance.get("/admin/getallusers");
+    const round = await axiosInstance.get("/check/round");
+    console.log("round");
+    console.log(round.data.data);
     console.log(a);
     console.log(a.data.data);
     if (a.data.data) setUsers(a.data.data);
+    if (round.data.data) setRound(round?.data?.data?.round);
   }
 
+  async function submitRound() {
+    console.log("round post");
+    const roundSet = await axiosInstance.post("/check/round", { round: round });
+    console.log(roundSet);
+    if (roundSet.data.data) setRound(roundSet.data.data.round);
+  }
+  console.log(round);
   useEffect(() => {
     if (!localStorage.getItem("ADMIN")) {
       //   console.log("NOT ADMIN");
@@ -81,6 +93,39 @@ const Admin = () => {
           borderRadius: "10px",
         }}
       >
+        <div style={{ textAlign: "center" }}>
+          <p
+            style={{
+              fontSize: "2rem",
+              paddingTop: "1rem",
+              textAlign: "center",
+            }}
+          >
+            Current round
+          </p>
+          <input
+            type={"number"}
+            value={round}
+            onChange={(e) => {
+              let val = e.target.value;
+              if (val <= 0 || val > 5) {
+                return;
+              }
+              setRound(val);
+            }}
+          />
+          <div>
+            <button
+              style={{ width: "5rem" }}
+              type="submit"
+              class="btn btn-primary"
+              onClick={submitRound}
+            >
+              Set
+            </button>
+          </div>
+        </div>
+
         <p
           style={{ fontSize: "2rem", paddingTop: "1rem", textAlign: "center" }}
         >
