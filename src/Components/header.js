@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axios";
 const Header = () => {
   const navigate = useNavigate();
+  const [round, setRound] = useState(1);
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -19,6 +20,8 @@ const Header = () => {
       localStorage.clear();
       setError(true);
     });
+    // if (roundReq.data) setRound(round.data.data.round);
+    // alert(round);
     console.log(a);
     if (a) {
       console.log("SUCCESS");
@@ -26,18 +29,34 @@ const Header = () => {
       localStorage.setItem("auth", a.data.data.token);
       localStorage.setItem("name", a.data.data.user.name);
       localStorage.setItem("username", a.data.data.user.username);
+
       console.log("a.data?.data?.user");
       console.log(a.data?.data?.user?.isAdmin);
+
+      const roundReq = await axiosInstance.get("/check/round");
+      console.log("roundReq.data?.data?.round");
+      console.log(roundReq.data?.data?.round);
+      if (roundReq.data) {
+        setRound(roundReq.data?.data?.round);
+      }
+
       if (a.data?.data?.user?.isAdmin) {
-        navigate("/admin");
         localStorage.setItem("ADMIN", true);
-        return;
+        return navigate("/admin");
       }
       if (a?.data?.data?.user?.selected) {
-        setTimeout(navigate("/level-four"), 1000);
+        console.log("selected");
+        console.log(round);
+        if (roundReq.data?.data?.round == 4) return navigate("/level-four");
+        if (roundReq.data?.data?.round == 5) return navigate("/level-five");
         return;
+      } else {
+        if (roundReq.data?.data?.round == 1) return navigate("/level-one");
+        if (roundReq.data?.data?.round == 2) return navigate("/level-two");
+        if (roundReq.data?.data?.round == 3) return navigate("/level-three");
+        // return;
       }
-      setTimeout(navigate("/level-one"), 1000);
+      navigate("/login");
     }
   }
   return (
