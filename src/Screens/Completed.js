@@ -34,7 +34,7 @@ const Completed = () => {
       >
         <p>You have completed technova.</p>
         <p>We will publish the result soon!</p>
-        <p>Thank you for participating!!</p>
+        <p>Thank you for participating.</p>
 
         {/* <button onClick={() => nav("/login")} class="btn btn-primary">
           Log In
