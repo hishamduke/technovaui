@@ -10,7 +10,7 @@ import axiosInstance from "../axios";
 
 const LevelOne = () => {
   const [selectedComponent, setSelectedComponent] = useState("LevelOne1");
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(60*50);
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
   const navigate = useNavigate();

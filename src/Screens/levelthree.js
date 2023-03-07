@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axios";
 const LevelThree = () => {
   const [selectedComponent, setSelectedComponent] = useState("LevelThree1");
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(60*50);
   const [loaded, setLoaded] = useState(false);
 
   const minutes = Math.floor(timer / 60);
