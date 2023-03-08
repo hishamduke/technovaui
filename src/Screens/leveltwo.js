@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axios";
 const LevelTwo = () => {
   const [selectedComponent, setSelectedComponent] = useState("LevelTwo1");
-  const [timer, setTimer] = useState(60*25);
+  const [timer, setTimer] = useState(60*20);
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
   const navigate = useNavigate();
